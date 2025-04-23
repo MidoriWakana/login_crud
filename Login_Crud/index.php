@@ -15,13 +15,13 @@
 </script>
 
     <?php
+        include "models/conection.php";
         include "controllers/delete_user.php";
     ?>
 <div class="container-fluid row">
     <form class="col-4" method="POST">
     <h3 class="text-center text-primary">Registro de usuarios</h3>
     <?php
-        include "models/conection.php";
         include "controllers/create_user.php";
     ?>
         <div class="mb-3">
@@ -65,12 +65,12 @@
                 $sql = $conection -> query("SELECT * FROM users");
                 while ($data = $sql -> fetch_object()) { ?>
                 <tr>
-                    <th scope="row">1</th>
+                    <td><?=$data->id?></td>
                     <td><?=$data->name?></td>
                     <td><?=$data->lastname?></td>
                     <td><?=$data->email?></td>
                     <td>
-                        <a href="update_user.php" class="btn btn-small btn-warning">Editar</a>
+                        <a href="update_user.php?id=<?= $data->id?>" class="btn btn-small btn-warning">Editar</a>
                         <a onclick="return eliminar()" href="index.php?id=<?= $data->id ?> " class="btn btn-small btn-danger">Eliminar</a>
                     </td>
                 </tr>

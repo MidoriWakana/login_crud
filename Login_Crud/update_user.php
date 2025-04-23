@@ -1,5 +1,6 @@
 <?php
-
+    $id = $_GET;["id"];
+    $sql = $conection->query("SELECT * FROM users WHERE id=$id");
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +14,9 @@
 <body>
 <form class="col-4 p-3 m-auto" method="POST">
     <h3 class="text-center text-primary">Actualizar usuarios</h3>
-        <div class="mb-3">
+    <?php
+        while ($data = $sql -> fetch_object()) {?>
+<div class="mb-3">
             <label for="name" class="form-label">Nombre</label>
             <input type="text" class="form-control" name="name">
         </div>
@@ -32,6 +35,9 @@
             <label for="password" class="form-label">Contraseña</label>
             <input type="password" class="form-control" name="password">
         </div>
+        <?php }
+    ?>
+        
 
         <button type="submit" class="btn btn-primary" name="btnregistro" value="ok">Registrar usuarios</button>
     </form>
