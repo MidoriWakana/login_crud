@@ -1,5 +1,6 @@
 <?php
-    $id = $_GET;["id"];
+include "models/conection.php";
+    $id = $_GET["id"];
     $sql = $conection->query("SELECT * FROM users WHERE id=$id");
 ?>
 
@@ -14,26 +15,28 @@
 <body>
 <form class="col-4 p-3 m-auto" method="POST">
     <h3 class="text-center text-primary">Actualizar usuarios</h3>
+    <input type="text" name="id" value="<?=$_GET["id"] ?>" hidden>
     <?php
+        include "controllers/update_user.php";
         while ($data = $sql -> fetch_object()) {?>
-<div class="mb-3">
+    <div class="mb-3">
             <label for="name" class="form-label">Nombre</label>
-            <input type="text" class="form-control" name="name">
+            <input type="text" class="form-control" name="name" value="<?=$data->name?>">
         </div>
 
         <div class="mb-3">
             <label for="lastname" class="form-label">Apellidos</label>
-            <input type="text" class="form-control" name="lastname">
+            <input type="text" class="form-control" name="lastname" value="<?=$data->lastname?>">
         </div>
 
         <div class="mb-3">
             <label for="email" class="form-label">Correo Electronico</label>
-            <input type="email" class="form-control" name="email">
+            <input type="email" class="form-control" name="email" value="<?=$data->email?>">
         </div>
 
         <div class="mb-3">
             <label for="password" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" name="password">
+            <input type="password" class="form-control" name="password" value="<?=$data->password?>">
         </div>
         <?php }
     ?>
